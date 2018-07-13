@@ -48,5 +48,21 @@ namespace HairSalon.Tests
       // Assert
       Assert.AreEqual(firstSalonStylist, secondSalonStylist);
     }
+    [TestMethod]
+    public void Save_AssignsIdToObject_Id()
+    {
+      //Arrange
+      SalonStylist testSalonStylist = new SalonStylist("testName", "testDetail", "testClient");
+
+      //Act
+      testSalonStylist.Save();
+      SalonStylist savedSalonStylist = SalonStylist.GetAll()[0];
+
+      int result = savedSalonStylist.GetId();
+      int testId = testSalonStylist.GetId();
+
+      //Assert
+      Assert.AreEqual(result, testId);
+    }
   }
 }
