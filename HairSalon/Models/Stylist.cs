@@ -105,6 +105,38 @@ namespace HairSalon.Models
        return allSalonStylist;
     }
 
+    public static SalonStylist FindBySalonStylistId(int byId)
+    {
+      int id = 0;
+      string name = "";
+      string detail = "";
+      string client = "";
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM stylist WHERE stylist_id = @idPara;";
+      MySqlParameter paraId = new MySqlParameter();
+      paraId.ParameterName = "@idPara";
+      paraId.Value = byId;
+      cmd.Parameters.Add(paraId);
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        id = rdr.GetInt32(0);
+        name = rdr.GetString(1);
+        detail = rdr.GetString(2);
+        client = rdr.GetString(3);
+      }
+      SalonStylist newSalonStylist = new SalonStylist(name, detail, client, id);
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return newSalonStylist;
+    }
+
     public static void DeleteAll()
     {
       MySqlConnection conn = DB.Connection();
