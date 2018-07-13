@@ -36,6 +36,24 @@ namespace HairSalon.Models
       return Client;
     }
 
+    public override bool Equals(System.Object otherSalonStylist)
+    {
+      if (!(otherSalonStylist is SalonStylist))
+      {
+        return false;
+      }
+      else
+      {
+        SalonStylist newSalonStylist = (SalonStylist) otherSalonStylist;
+        bool idEqual = (this.GetId() == newSalonStylist.GetId());
+        bool nameEqual = (this.GetName() == newSalonStylist.GetName());
+        bool detailEqual = (this.GetDetail() == newSalonStylist.GetDetail());
+        bool clientEqual = (this.GetClient() == newSalonStylist.GetClient());
+        return (idEqual && nameEqual && detailEqual && clientEqual);
+      }
+    }
+
+
     public static void DeleteAll()
     {
       MySqlConnection conn = DB.Connection();

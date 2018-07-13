@@ -38,5 +38,15 @@ namespace HairSalon.Tests
       Assert.AreEqual(detail, resultDetail);
       Assert.AreEqual(client, resultClient);
     }
+    [TestMethod]
+    public void Equals_ReturnsTrueIfNameAndDescriptionsAreTheSame_SalonStylist()
+    {
+      // Arrange, Act
+      SalonStylist firstSalonStylist = new SalonStylist("testName", "testDetail", "testClient", 1);
+      SalonStylist secondSalonStylist = new SalonStylist("testName", "testDetail", "testClient", 1);
+
+      // Assert
+      Assert.AreEqual(firstSalonStylist, secondSalonStylist);
+    }
   }
 }
