@@ -77,5 +77,20 @@ namespace HairSalon.Tests
       //Assert
       Assert.AreEqual(testSalonStylist, resultSalonStylist);
     }
+    [TestMethod]
+    public void FindByStylistByName()
+    {
+      //Arrange
+      List<SalonStylist> testList = new List<SalonStylist> {};
+      SalonStylist testSalonStylist = new SalonStylist("testName", "testDetail", "testClient");
+      testSalonStylist.Save();
+      testList.Add(testSalonStylist);
+
+      //Act
+      List<SalonStylist> resultList = SalonStylist.FindByStylistName(testSalonStylist.GetName());
+
+      //Assert
+      CollectionAssert.AreEqual(testList, resultList);
+    }
   }
 }
