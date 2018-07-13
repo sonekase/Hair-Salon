@@ -93,6 +93,34 @@ namespace HairSalon.Models
        return allSalonClient;
     }
 
+    public static List<SalonClient> FindByClientName(string clientName)
+    {
+      List<SalonClient> foundSalonClient = new List<SalonClient> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM client WHERE client_name LIKE @ClientName;";
+      MySqlParameter foundClientName = new MySqlParameter();
+      foundClientName.ParameterName = "@ClientName";
+      foundClientName.Value = clientName + "%";
+      cmd.Parameters.Add(foundClientName);
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+       {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string stylist = rdr.GetString(2);
+        SalonClient newSalonClient = new SalonClient(name, stylist, id);
+        foundSalonClient.Add(newSalonClient);
+       }
+       conn.Close();
+       if (conn != null)
+       {
+         conn.Dispose();
+       }
+       return foundSalonClient;
+    }
+
     public static void DeleteAll()
     {
       MySqlConnection conn = DB.Connection();
