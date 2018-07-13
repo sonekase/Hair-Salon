@@ -137,6 +137,5 @@ namespace HairSalon.Models
          conn.Dispose();
        }
     }
-
   }
 }
