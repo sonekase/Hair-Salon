@@ -11,8 +11,8 @@ namespace HairSalon.Controllers
     [HttpGet("/stylist")]
     public ActionResult Index()
     {
-      List<SalonStylist> allSalonStylist = SalonStylist.GetAll();
-      return View(allSalonStylist);
+      List<Stylist> allStylist = Stylist.GetAll();
+      return View(allStylist);
     }
     [HttpGet("/stylist/new")]
     public ActionResult CreateForm()
@@ -27,20 +27,19 @@ namespace HairSalon.Controllers
       {
         newDetail = detail;
       }
-      SalonStylist allSalonStylist = new SalonStylist(stylistName, detail);
-      allSalonStylist.Save();
+      Stylist allStylist = new Stylist(stylistName, detail);
+      allStylist.Save();
       return RedirectToAction("Index");
     }
     [HttpPost("/stylists/search")]
     public ActionResult Search(string searchFx, string searchTerm)
     {
-      List<SalonStylist> foundSalonStylist = new List<SalonStylist> {};
+      List<Stylist> foundStylist = new List<Stylist> {};
       if(searchFx.Equals("byStylist"))
       {
-        foundSalonStylist = SalonStylist.FindByStylistName(searchTerm);
+        foundStylist = Stylist.FindByStylistName(searchTerm);
       }
-      return View("Index", foundSalonStylist);
+      return View("Index", foundStylist);
     }
-
   }
 }

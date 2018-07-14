@@ -5,13 +5,13 @@ using HairSalon;
 
 namespace HairSalon.Models
 {
-  public class SalonClient
+  public class Client
   {
     private int Id;
     private string Name;
     private string Stylist;
 
-    public SalonClient(string newName, string newStylist = "", int newId =0)
+    public Client(string newName, string newStylist = "", int newId =0)
     {
       Id = newId;
       Name = newName;
@@ -30,18 +30,18 @@ namespace HairSalon.Models
       return Stylist;
     }
 
-    public override bool Equals(System.Object otherSalonClient)
+    public override bool Equals(System.Object otherClient)
     {
-      if (!(otherSalonClient is SalonClient))
+      if (!(otherClient is Client))
       {
         return false;
       }
       else
       {
-        SalonClient newSalonClient = (SalonClient) otherSalonClient;
-        bool idEqual = (this.GetId() == newSalonClient.GetId());
-        bool nameEqual = (this.GetName() == newSalonClient.GetName());
-        bool stylistEqual = (this.GetStylist() == newSalonClient.GetStylist());
+        Client newClient = (Client) otherClient;
+        bool idEqual = (this.GetId() == newClient.GetId());
+        bool nameEqual = (this.GetName() == newClient.GetName());
+        bool stylistEqual = (this.GetStylist() == newClient.GetStylist());
         return (idEqual && nameEqual && stylistEqual);
       }
     }
@@ -51,7 +51,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO client (client_name, stylist_name) VALUES (@inputName, @inputStylist);";
+      cmd.CommandText = @"INSERT INTO client (name, stylist) VALUES (@inputName, @inputStylist);";
       MySqlParameter newName = new MySqlParameter();
       newName.ParameterName = "@inputName";
       newName.Value = this.Name;
@@ -69,9 +69,9 @@ namespace HairSalon.Models
       }
     }
 
-    public static List<SalonClient> GetAll()
+    public static List<Client> GetAll()
     {
-      List<SalonClient> allSalonClient = new List<SalonClient> {};
+      List<Client> allClient = new List<Client> {};
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
@@ -82,24 +82,24 @@ namespace HairSalon.Models
         int id = rdr.GetInt32(0);
         string name = rdr.GetString(1);
         string stylist = rdr.GetString(2);
-        SalonClient newSalonClient = new SalonClient(name, stylist, id);
-        allSalonClient.Add(newSalonClient);
+        Client newClient = new Client(name, stylist, id);
+        allClient.Add(newClient);
        }
        conn.Close();
        if (conn != null)
        {
          conn.Dispose();
        }
-       return allSalonClient;
+       return allClient;
     }
 
-    public static List<SalonClient> FindByClientName(string clientName)
+    public static List<Client> FindByClientName(string clientName)
     {
-      List<SalonClient> foundSalonClient = new List<SalonClient> {};
+      List<Client> foundClient = new List<Client> {};
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM client WHERE client_name LIKE @ClientName;";
+      cmd.CommandText = @"SELECT * FROM client WHERE name LIKE @ClientName;";
       MySqlParameter foundClientName = new MySqlParameter();
       foundClientName.ParameterName = "@ClientName";
       foundClientName.Value = clientName + "%";
@@ -110,15 +110,15 @@ namespace HairSalon.Models
         int id = rdr.GetInt32(0);
         string name = rdr.GetString(1);
         string stylist = rdr.GetString(2);
-        SalonClient newSalonClient = new SalonClient(name, stylist, id);
-        foundSalonClient.Add(newSalonClient);
+        Client newClient = new Client(name, stylist, id);
+        foundClient.Add(newClient);
        }
        conn.Close();
        if (conn != null)
        {
          conn.Dispose();
        }
-       return foundSalonClient;
+       return foundClient;
     }
 
     public static void DeleteAll()
@@ -127,7 +127,7 @@ namespace HairSalon.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM Client;";
+      cmd.CommandText = @"DELETE FROM client;";
 
       cmd.ExecuteNonQuery();
 

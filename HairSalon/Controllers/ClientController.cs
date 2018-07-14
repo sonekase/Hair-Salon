@@ -11,8 +11,8 @@ namespace HairSalon.Controllers
     [HttpGet("/client")]
     public ActionResult Index()
     {
-      List<SalonClient> allSalonClient = SalonClient.GetAll();
-      return View(allSalonClient);
+      List<Client> allClient = Client.GetAll();
+      return View(allClient);
     }
     [HttpGet("/client/new")]
     public ActionResult CreateForm()

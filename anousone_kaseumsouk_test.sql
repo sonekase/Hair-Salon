@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 14, 2018 at 04:42 AM
+-- Generation Time: Jul 14, 2018 at 04:43 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `anousone_kaseumsouk`
+-- Database: `anousone_kaseumsouk_test`
 --
-CREATE DATABASE IF NOT EXISTS `anousone_kaseumsouk` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `anousone_kaseumsouk`;
+CREATE DATABASE IF NOT EXISTS `anousone_kaseumsouk_test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `anousone_kaseumsouk_test`;
 
 -- --------------------------------------------------------
 
@@ -70,13 +70,13 @@ ALTER TABLE `stylist`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `stylist`
 --
 ALTER TABLE `stylist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

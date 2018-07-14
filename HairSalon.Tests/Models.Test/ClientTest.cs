@@ -10,20 +10,20 @@ namespace HairSalon.Tests
   {
     public void Dispose()
     {
-      SalonClient.DeleteAll();
+      Client.DeleteAll();
     }
     public ClientTests()
     {
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=anousone_kaseumsouk_test;";
     }
     [TestMethod]
-    public void GetTest_ReturnSalonClientField()
+    public void GetTest_ReturnClientField()
     {
      // arrange
       int id = 1;
       string name = "Client Test";
       string stylist= "Stylist Test";
-      SalonClient testClient = new SalonClient(name, stylist, id);
+      Client testClient = new Client(name, stylist, id);
 
      // act
       int resultId = testClient.GetId();
@@ -36,27 +36,27 @@ namespace HairSalon.Tests
       Assert.AreEqual(stylist, resultStylist);
     }
     [TestMethod]
-    public void Equals_ReturnsTrueIfNameAndStylistAreTheSame_SalonClient()
+    public void Equals_ReturnsTrueIfNameAndStylistAreTheSame_Client()
     {
       // Arrange, Act
-      SalonClient firstSalonClient = new SalonClient("testName", "testStylist",1);
-      SalonClient secondSalonClient = new SalonClient("testName", "testStylist",1);
+      Client firstClient = new Client("testName", "testStylist",1);
+      Client secondClient = new Client("testName", "testStylist",1);
 
       // Assert
-      Assert.AreEqual(firstSalonClient, secondSalonClient);
+      Assert.AreEqual(firstClient, secondClient);
     }
     [TestMethod]
     public void Save_AssignsIdToObject_Id()
     {
       //Arrange
-      SalonClient testSalonClient = new SalonClient("testName", "testStylist");
+      Client testClient = new Client("testName", "testStylist");
 
       //Act
-      testSalonClient.Save();
-      SalonClient savedSalonClient = SalonClient.GetAll()[0];
+      testClient.Save();
+      Client savedClient = Client.GetAll()[0];
 
-      int result = savedSalonClient.GetId();
-      int testId = testSalonClient.GetId();
+      int result = savedClient.GetId();
+      int testId = testClient.GetId();
 
       //Assert
       Assert.AreEqual(result, testId);
@@ -65,13 +65,13 @@ namespace HairSalon.Tests
     public void FindByClientName()
     {
       //Arrange
-      List<SalonClient> testList = new List<SalonClient> {};
-      SalonClient testSalonClient = new SalonClient("testName", "testStylist");
-      testSalonClient.Save();
-      testList.Add(testSalonClient);
+      List<Client> testList = new List<Client> {};
+      Client testClient = new Client("testName", "testStylist");
+      testClient.Save();
+      testList.Add(testClient);
 
       //Act
-      List<SalonClient> resultList = SalonClient.FindByClientName(testSalonClient.GetName());
+      List<Client> resultList = Client.FindByClientName(testClient.GetName());
 
       //Assert
       CollectionAssert.AreEqual(testList, resultList);
