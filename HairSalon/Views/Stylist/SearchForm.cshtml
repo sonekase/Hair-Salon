@@ -1,26 +1,12 @@
 <h1>Search For Stylist</h1>
 
 <form class="" action="/Stylist/search" method="post">
-  <div class="radio">
-   <div>
-     <label>
-      <input type="radio" name="searchFx" value="byName" checked>
-      Search By Stylist Name
-    </label>
-  </div>
-  <div>
-    <label>
-     <input type="radio" name="searchFx" value="byId">
-     Search By Stylist Id
-    </label>
-  </div>
- </div>
  <div class="">
-   <input type="text" name="searchTerm" required>
+   <label for="searchName">Stylist Name</label>
+   <input type="text" name="searchName" required>
  </div>
  <button type="submit" name="button">Search</button>
 </form>
 
 <h3><a href="/">Home</a></h3>
 <h3><a href="/Stylist">List of Stylist</a></h3>
-<h3><a href="/Client">List of Client</a></h3>

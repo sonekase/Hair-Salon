@@ -11,7 +11,7 @@ namespace HairSalon.Models
     private string Name;
     private string Stylist;
 
-    public Client(string newName, string newStylist = "", int newId =0)
+    public Client(string newName, string newStylist, int newId =0)
     {
       Id = newId;
       Name = newName;

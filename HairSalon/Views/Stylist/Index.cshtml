@@ -1,16 +1,16 @@
 <h1>Salon Stylist List</h1>
 <ul>
-  @foreach(var SalonStylist in Model)
+  @foreach(var Stylist in Model)
   {
     <form action="/Stylist/delete" method="post">
-    <li>@SalonStylist.GetId() - @SalonStylist.GetName(): @SalonStylist.GetDetail(), Client: @SalonStylist.GetClient()
-      <a href= "/Stylist/@SalonStylist.GetId()">Edit</a>
-      <input type="number" name="deleteId" value="@SalonStylist.GetId()" hidden>
+    <li>@Stylist.GetId() - <a href ="Stylist/@Stylist.GetName()">
+      @Stylist.GetName()</a>: @Stylist.GetDetail():
+      <a href= "/Stylist/@Stylist.GetId()"></a>
+      <input type="number" name="deleteId" value="@Stylist.GetId()" hidden>
       <button type="submit" name="button">Delete</button></li></form>
   }
 </ul>
 
 <h3><a href="/">Home</a></h3>
 <h3><a href="/Stylist">List of Salon Stylist</a></h3>
-<h3><a href="/Clinet">List of Salon Client</a></h3>
 <h3><a href="/Stylist/new">Add New Stylist</a></h3>
