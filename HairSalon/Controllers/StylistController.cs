@@ -56,37 +56,5 @@ namespace HairSalon.Controllers
       List<Stylist> newStylist = Stylist.FindByStylistName(searchName);
       return View("Index", newStylist);
     }
-    // [HttpGet("/stylist")]
-    // public ActionResult Index()
-    // {
-    //   List<Stylist> allStylist = Stylist.GetAll();
-    //   return View(allStylist);
-    // }
-    // [HttpGet("/stylist/new")]
-    // public ActionResult CreateForm()
-    // {
-    //   return View();
-    // }
-    // [HttpPost("/stylists/new")]
-    // public ActionResult Create(string stylistName, string detail)
-    // {
-    //   string newDetail = "";
-    //   if(!string.IsNullOrWhiteSpace(Request.Form["detail"]))
-    //   {
-    //     newDetail = detail;
-    //   }
-    //   Stylist allStylist = new Stylist(stylistName, detail);
-    //   allStylist.Save();
-    //   return RedirectToAction("Index");
-    // }
-    // [HttpPost("/stylists/search")]
-    // public ActionResult Search(string searchFx, string searchTerm)
-    // {
-    //   List<Stylist> foundStylist = new List<Stylist> {};
-    //   if(searchFx.Equals("byStylist"))
-    //   {
-    //     foundStylist = Stylist.FindByStylistName(searchTerm);
-    //   }
-    //   return View("Index", foundStylist);
   }
 }
