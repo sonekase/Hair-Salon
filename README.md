@@ -26,8 +26,6 @@ Application: CSharp, netcoreapp1.1, Razor, MAMP, MySQL
 
 For any questions or support details, please email:
 anousonekaseumsouk@icloud.com
-ldam77@yahoo.com
-jean84646@gmail.com
 
 ## Spec
 
