@@ -51,7 +51,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO stylist (name, detail) VALUES (@inputName, @inputDetail);";
+      cmd.CommandText = @"INSERT INTO stylists (name, detail) VALUES (@inputName, @inputDetail);";
       MySqlParameter newName = new MySqlParameter();
       newName.ParameterName = "@inputName";
       newName.Value = this.Name;
@@ -75,7 +75,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM stylist;";
+      cmd.CommandText = @"SELECT * FROM stylists;";
       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
        {
@@ -101,7 +101,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM stylist WHERE id = @idPara;";
+      cmd.CommandText = @"SELECT * FROM stylists WHERE id = @idPara;";
       MySqlParameter paraId = new MySqlParameter();
       paraId.ParameterName = "@idPara";
       paraId.Value = byId;
@@ -129,7 +129,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM stylist WHERE name LIKE @stylistName;";
+      cmd.CommandText = @"SELECT * FROM stylists WHERE name LIKE @stylistName;";
       MySqlParameter foundStylistName = new MySqlParameter();
       foundStylistName.ParameterName = "@stylistName";
       foundStylistName.Value = stylistName + "%";
@@ -157,14 +157,18 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM client;";
+      cmd.CommandText = @"SELECT * FROM clients WHERE stylist_id = @stylistId;";
+      MySqlParameter clientStylistId = new MySqlParameter();
+      clientStylistId.ParameterName = "@stylistId";
+      clientStylistId.Value = this.Id;
+      cmd.Parameters.Add(clientStylistId);
       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
        {
         int id = rdr.GetInt32(0);
         string name = rdr.GetString(1);
-        string stylist = rdr.GetString(2);
-        Client newClient = new Client(name, stylist, id);
+        int stylistId = rdr.GetInt32(2);
+        Client newClient = new Client(name, stylistId, id);
         allClient.Add(newClient);
        }
        conn.Close();
@@ -175,12 +179,34 @@ namespace HairSalon.Models
        return allClient;
     }
 
+    public void EditStylistName(string newName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE stylists SET name = @stylistName WHERE id = @idPara;";
+      MySqlParameter editName = new MySqlParameter();
+      editName.ParameterName = "@stylistName";
+      editName.Value = newName;
+      cmd.Parameters.Add(editName);
+      MySqlParameter paraId = new MySqlParameter();
+      paraId.ParameterName = "@idPara";
+      paraId.Value = this.Id;
+      cmd.Parameters.Add(paraId);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
     public void Delete()
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM stylist WHERE id=@thisId;";
+      cmd.CommandText = @"DELETE FROM stylists WHERE id=@thisId;";
       MySqlParameter deleteId = new MySqlParameter();
       deleteId.ParameterName = "@thisId";
       deleteId.Value = this.Id;
@@ -199,7 +225,7 @@ namespace HairSalon.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM stylist;";
+      cmd.CommandText = @"DELETE FROM stylists;";
 
       cmd.ExecuteNonQuery();
 

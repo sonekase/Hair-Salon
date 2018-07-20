@@ -1,11 +1,15 @@
 <h1>List of Clients</h1>
 <ul>
-  @foreach(var Client in Model)
+  @foreach(var client in Model)
   {
-    <li>@Client.GetClient() - Stylist: @Client.GetStylist()</li>
+    <form action="/Clients/delete" method="post">
+      <li><a href ="/Clients/@client.GetId()"> @client.GetName()</a>: stylist: @client.GetStylistId()
+        <input type="number" name="deleteId" value="@client.GetId()" hidden>
+      <button type="submit" name="button">Delete</button></li>
+    </form>
   }
 </ul>
 
 <h3><a href="/">Home</a></h3>
-<h3><a href="/Client/new">Add new Client</a></h3>
-<h3><a href="/Stylist/search">Find a Stylist</a></h3>
+<h3><a href="/Clients/new">Add new Client</a></h3>
+<h3><a href="/Stylists/search">Find a Stylist</a></h3>

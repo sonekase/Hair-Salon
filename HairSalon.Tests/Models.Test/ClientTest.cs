@@ -22,25 +22,25 @@ namespace HairSalon.Tests
      // arrange
       int id = 1;
       string name = "Client Test";
-      string stylist= "Stylist Test";
-      Client testClient = new Client(name, stylist, id);
+      int stylistId= 1;
+      Client testClient = new Client(name, stylistId, id);
 
      // act
       int resultId = testClient.GetId();
       string resultName = testClient.GetName();
-      string resultStylist = testClient.GetStylist();
+      int resultStylistId = testClient.GetStylistId();
 
      // assert
       Assert.AreEqual(id, resultId);
       Assert.AreEqual(name, resultName);
-      Assert.AreEqual(stylist, resultStylist);
+      Assert.AreEqual(stylistId, resultStylistId);
     }
     [TestMethod]
     public void Equals_ReturnsTrueIfNameAndStylistAreTheSame_Client()
     {
       // Arrange, Act
-      Client firstClient = new Client("testName", "testStylist",1);
-      Client secondClient = new Client("testName", "testStylist",1);
+      Client firstClient = new Client("testName", 1, 1);
+      Client secondClient = new Client("testName", 1, 1);
 
       // Assert
       Assert.AreEqual(firstClient, secondClient);
@@ -49,7 +49,7 @@ namespace HairSalon.Tests
     public void Save_AssignsIdToObject_Id()
     {
       //Arrange
-      Client testClient = new Client("testName", "testStylist");
+      Client testClient = new Client("testName", 1);
 
       //Act
       testClient.Save();
@@ -66,7 +66,7 @@ namespace HairSalon.Tests
     {
       //Arrange
       List<Client> testList = new List<Client> {};
-      Client testClient = new Client("testName", "testStylist");
+      Client testClient = new Client("testName", 1);
       testClient.Save();
       testList.Add(testClient);
 

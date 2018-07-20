@@ -90,6 +90,23 @@ namespace HairSalon.Tests
       CollectionAssert.AreEqual(testList, resultList);
     }
     [TestMethod]
+    public void Edit_UpdatesStylistNameInDatabase_String()
+    {
+      //Arrange
+      string firstName = "Michael Jackson";
+      Stylist testStylist = new Stylist("testName", "testDetail");
+      testStylist.Save();
+      string secondName = "Aubrey Graham";
+
+      //Act
+      testStylist.EditStylistName(secondName);
+
+      string result = Stylist.FindByStylistId(testStylist.GetId()).GetName();
+
+      //Assert
+      Assert.AreEqual(secondName, result);
+    }
+    [TestMethod]
     public void Delete_DeleteStylistEntry()
     {
       // Arrange

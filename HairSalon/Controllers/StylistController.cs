@@ -8,49 +8,63 @@ namespace HairSalon.Controllers
 {
   public class StylistController : Controller
   {
-    [HttpGet("/Stylist")]
+    [HttpGet("/Stylists")]
       public ActionResult Index()
       {
         List<Stylist> allStylist = Stylist.GetAll();
         return View(allStylist);
       }
-    [HttpPost("/Stylist")]
+    [HttpPost("/Stylists")]
       public ActionResult ReturnForm(string newName, string newDetail)
       {
       Stylist newStylist = new Stylist(newName, newDetail);
       newStylist.Save();
         return RedirectToAction("Index");
       }
-    [HttpGet("/Stylist/new")]
+    [HttpGet("/Stylists/new")]
       public ActionResult CreateForm()
       {
         return View();
       }
-    [HttpPost("/Stylist/delete")]
+    [HttpPost("/Stylists/delete")]
       public ActionResult Delete(string deleteId)
       {
         int id = int.Parse(deleteId);
         Stylist.FindByStylistId(id).Delete();
         return RedirectToAction("Index");
       }
-    [HttpGet("Stylist/{name}")]
-    public ActionResult StylistDetail(string name)
+    [HttpGet("Stylists/{id}")]
+    public ActionResult StylistDetail(int id)
     {
-      return View(Stylist.FindByStylistName(name)[0]);
+      return View(Stylist.FindByStylistId(id));
     }
-    [HttpPost("Stylists/{stylistName}/addclient")]
-    public ActionResult AddClient(string stylistName, string clientName)
+    [HttpPost("Stylist/{stylistId}/editname")]
+    public ActionResult EditName(int stylistId, string newName)
     {
-      Client newClient = new Client(clientName, stylistName);
+      Stylist newStylist = Stylist.FindByStylistId(stylistId);
+      newStylist.EditStylistName(newName);
+      string stylistName = newStylist.GetName();
+      return RedirectToAction("StylistDetail", new { id = stylistId});
+    }
+    [HttpPost("Stylists/{stylistId}/addclient")]
+    public ActionResult AddClient(int stylistId, string clientName)
+    {
+      Client newClient = new Client(clientName, stylistId);
       newClient.Save();
+      return RedirectToAction("StylistDetail", new { id = stylistId});
+    }
+    [HttpPost("/Stylist/deleteclient/{stylistName}")]
+    public ActionResult DeleteClient(int clientId, string stylistName)
+    {
+      Client.FindByClientId(clientId).Delete();
       return RedirectToAction("StylistDetail", new { name = stylistName});
     }
-    [HttpGet("Stylist/search")]
+    [HttpGet("Stylists/search")]
     public ActionResult SearchForm()
     {
       return View();
     }
-    [HttpPost("Stylist/search")]
+    [HttpPost("Stylists/search")]
     public ActionResult ReturnStylist(string searchName)
     {
       List<Stylist> newStylist = Stylist.FindByStylistName(searchName);
