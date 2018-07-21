@@ -17,30 +17,6 @@ namespace HairSalon.Tests
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=anousone_kaseumsouk_test;";
     }
     [TestMethod]
-    public void GetTest_ReturnDataField()
-    {
-      // Arrange
-      int testSpecialtyId = 1;
-      int testStylistId = 1;
-      SpecialtyStylist testSpecialtyStylist = new SpecialtyStylist(testSpecialtyId, testStylistId);
-
-      // act
-      int resultid = testSpecialtyStylist.GetSpecialtyId();
-
-      // assert
-      Assert.AreEqual(testSpecialtyId, resultId);
-    }
-    [TestMethod]
-    public void Equals_ReturnsTrueIfAllAreTheSame_SpecialtyStylist()
-    {
-      // Arrange, Act
-      SpecialtyStylist firstSpecialtyStylist = new SpecialtyStylist(1, 1);
-      SpecialtyStylist secondSpecialtyStylist = new SpecialtyStylist(1, 1);
-
-      // Assert
-      Assert.AreEqual(firstSpecialtyStylist, secondSpecialtyStylist);
-    }
-    [TestMethod]
     public void Save_AssignsIdToObject_Id()
     {
       //Arrange
