@@ -1,0 +1,13 @@
+<h1>Specialties List</h1>
+<ul>
+  @foreach(var Specialty in Model)
+  {
+    <form action="/Specialty/delete" method="post">
+    <li><a href ="Specialty/@Specialty.GetId()">
+      @Specialty.GetName()</a>
+      <input type="number" name="deleteId" value="@Specialty.GetId()" hidden>
+      <button type="submit" name="button">Delete</button></li></form>
+  }
+</ul>
+<h3><a href="/Specialty/new">Add Speciality</a></h3>
+<h3><a href="/">Home</a></h3>

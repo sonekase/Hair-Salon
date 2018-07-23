@@ -77,6 +77,53 @@ namespace HairSalon.Models
       }
       return allSpecialties;
     }
+
+    public static Specialty FindBySpecialtyId(int byId)
+    {
+      int id = 0;
+      string name = "";
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM specialties WHERE id = @idPara;";
+      MySqlParameter paraId = new MySqlParameter();
+      paraId.ParameterName = "@idPara";
+      paraId.Value = byId;
+      cmd.Parameters.Add(paraId);
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        id = rdr.GetInt32(0);
+        name = rdr.GetString(1);
+      }
+      Specialty newSpecialty = new Specialty(name, id);
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return newSpecialty;
+    }
+
+    public void Delete()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM specialties WHERE id=@thisId;";
+      MySqlParameter deleteId = new MySqlParameter();
+      deleteId.ParameterName = "@thisId";
+      deleteId.Value = this.Id;
+      cmd.Parameters.Add(deleteId);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
     public static void DeleteAll()
     {
       MySqlConnection conn = DB.Connection();
