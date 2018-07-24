@@ -1,0 +1,38 @@
+body {
+  background-image: url(/img/hair.jpg);
+  height: 100%;
+  width: 100%;
+  height: 100vh;
+  display: table;
+  top: 0;
+  background-size: cover;
+  font-family: skia;
+  font-size: 2em;
+}
+
+h1 {
+  color: #FFF;
+  font-size: 2em;
+}
+
+h3 a {
+  color: #778899;
+}
+
+a {
+  color: #FFF;
+}
+
+li {
+  color: red;
+}
+
+button {
+  color: #778899;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 15px;
+}
+
+label {
+  color: #FFF;
+}
