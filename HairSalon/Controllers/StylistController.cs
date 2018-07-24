@@ -70,5 +70,12 @@ namespace HairSalon.Controllers
       List<Stylist> newStylist = Stylist.FindByStylistName(searchName);
       return View("Index", newStylist);
     }
+    [HttpPost("/Stylist/{stylistId}/new")]
+    public ActionResult AddSpeciality(int specialtyId, int stylistId)
+    {
+      SpecialtyStylist newSpecialtyStylist = new SpecialtyStylist(specialtyId, stylistId);
+      newSpecialtyStylist.Save();
+      return RedirectToAction("StylistDetail", new { id = stylistId});
+    }
   }
 }
