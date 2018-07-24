@@ -25,6 +25,14 @@
   <button type="submit" class="">Add Specialty</button>
 </form>
 
+<h3>Stylist Specialty:</h3>
+<ul>
+    @foreach( var specialty in Model.GetAllStylistSpecialties())
+    {
+      <li>@specialty.GetName()</li>
+    }
+</ul>
+
 <h3>Client List:</h3>
 
 <ul>
