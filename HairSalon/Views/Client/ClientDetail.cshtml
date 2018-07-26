@@ -4,14 +4,17 @@
 
 <h1>@Model.GetName()</h1>
 <form action="/Clients/@Model.GetId()/editname" method="post">
-  <div class="">
+  <div class="homepage">
+    <br>
     <label for="newName"></label>
     <input type="text" name="newName" required>
+    <button type="submit" class="">Edit Client</button>
   </div>
-  <button type="submit" class="">Edit Client</button>
 </form>
 </h1>
 
-<h3><a href="/">Home</a></h3>
-<h3><a href='/Stylists'>List of Salon Stylists</a></h3>
-<h3><a href="/Stylists/search">Find a Stylist</a></h3>
+<div class="homepage">
+  <h3><a href="/">Home</a></h3>
+  <h3><a href='/Stylists'>List of Salon Stylists</a></h3>
+  <h3><a href="/Stylists/search">Find a Stylist</a></h3>
+</div>

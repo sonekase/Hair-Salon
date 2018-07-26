@@ -7,14 +7,21 @@ body {
   top: 0;
   background-size: cover;
   font-family: skia;
-  font-size:3em;
+  font-size:2.5em;
   text-align: center;
-  margin-top: 5%
+  margin-top: 10%
+}
+
+.homepage {
+  border-style: solid;
+  border-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.7);
+
 }
 
 h1 {
   color: #FFF;
-  font-size: 2.5em;
+  font-size: 3em;
 }
 
 h3 {
@@ -24,15 +31,15 @@ h3 {
 
 h3 a {
   color: #FFF;
-  font-size: 1.75em;
+  font-size: 1.50em;
   font-weight: bold;
-  border-style: solid;
+  /* border-style: solid;
   border-color: rgba(0,0,0,0.1);
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.1); */
 }
 
 h3 a:hover {
-  color: red;
+  color: #778899;
   text-decoration: none;
 }
 
@@ -41,14 +48,14 @@ a {
 }
 
 li {
-  color: red;
+  color: #FFF;
   list-style: none;
 }
 
 button {
   color: #778899;
   background-color: rgba(0,0,0,0.2);
-  border-radius: 15px;
+  border-radius: 6px;
 }
 
 label {
@@ -56,5 +63,5 @@ label {
 }
 
 input {
-  border-radius: 15px;
+  border-radius: 6px;
 }

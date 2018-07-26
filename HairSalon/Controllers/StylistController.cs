@@ -43,9 +43,16 @@ namespace HairSalon.Controllers
     {
       Stylist newStylist = Stylist.FindByStylistId(stylistId);
       newStylist.EditStylistName(newName);
-      string stylistName = newStylist.GetName();
       return RedirectToAction("StylistDetail", new { id = stylistId});
     }
+    [HttpPost("Stylist/{stylistId}/editdetail")]
+    public ActionResult EditDetail(int stylistId, string newDetail)
+    {
+      Stylist newStylist = Stylist.FindByStylistId(stylistId);
+      newStylist.EditStylistDetail(newDetail);
+      return RedirectToAction("StylistDetail", new { id = stylistId});
+    }
+
     [HttpPost("Stylists/{stylistId}/addclient")]
     public ActionResult AddClient(int stylistId, string clientName)
     {

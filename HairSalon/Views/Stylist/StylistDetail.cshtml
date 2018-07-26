@@ -5,17 +5,26 @@
 }
 
 
-<h1>@Model.GetName()
-<form action="/Stylist/@Model.GetId()/editname" method="post">
-  <div class="">
-    <label for="newName"></label>
-    <input type="text" name="newName" required>
-  <button type="submit" class="">Edit Name</button></div>
-</form>
-</h1>
+<h1>@Model.GetName()</h1>
+<div class="homepage">
+  <form action="/Stylist/@Model.GetId()/editname" method="post">
+    <div class="homepage">
+      <label for="newName"></label>
+      <input type="text" name="newName" required>
+    <button type="submit" class="">Edit Name</button></div>
+  </form>
+
+  <div class="homepage">
+    <form action="/Stylist/@Model.GetId()/editdetail" method="post">
+      <div class="homepage">
+        <label for="newDetail"></label>
+        <input type="text" name="newDetail" required>
+      <button type="submit" class="">Edit Detail</button></div>
+    </form>
+
 
 <h3>Specialty:</h3>
-<form action="/Stylist/@Model.GetId()/new" action="index.html" method="post">
+<form action="/Stylist/@Model.GetId()/new" action="index.html" method="post" class="homepage">
   <select name="specialtyId">
     @foreach (var specialty in Specialty.GetAll())
     {
@@ -26,7 +35,7 @@
 </form>
 
 <h3>Stylist Specialty:</h3>
-<ul>
+<ul class="homepage">
     @foreach( var specialty in Model.GetAllStylistSpecialties())
     {
       <li>@specialty.GetName()</li>
@@ -35,7 +44,7 @@
 
 <h3>Client List:</h3>
 
-<ul>
+<ul class="homepage">
   @foreach(var client in Model.GetAllClient())
   {
     <form action="/Stylist/deleteclient/@Model.GetId()" method="post">
@@ -46,13 +55,13 @@
 </ul>
 
 <h3>Add a New Client</h3>
-<form action="/Stylists/@Model.GetId()/addclient" method="post">
-  <div class="">
+<form action="/Stylists/@Model.GetId()/addclient" method="post" class="homepage">
     <label for="clientName">Client Name:</label>
      <input type="text" name="clientName" required>
-  </div>
   <button type="submit" class="">ADD</button>
 </form>
 
-<h3><a href="/Stylists">List of Stylists</a></h3>
-<h3><a href="/">Home</a></h3>
+<div class="homepage">
+  <h3><a href="/Stylists">List of Stylists</a></h3>
+  <h3><a href="/">Home</a></h3>
+</div>

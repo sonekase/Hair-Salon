@@ -3,7 +3,7 @@
 }
 
 <h1>Specialties List</h1>
-<ul>
+<ul class="homepage">
   @foreach(var Specialty in Model)
   {
     <form action="/Specialty/delete" method="post">
@@ -13,5 +13,7 @@
       <button type="submit" name="button">Delete</button></li></form>
   }
 </ul>
-<h3><a href="/Specialty/new">Add Speciality</a></h3>
-<h3><a href="/">Home</a></h3>
+<div class="homepage">
+  <h3><a href="/Specialty/new">Add Speciality</a></h3>
+  <h3><a href="/">Home</a></h3>
+</div>

@@ -201,6 +201,28 @@ namespace HairSalon.Models
       }
     }
 
+    public void EditStylistDetail(string newDetail)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE stylists SET detail = @stylistDetail WHERE id = @idPara;";
+      MySqlParameter editDetail = new MySqlParameter();
+      editDetail.ParameterName = "@stylistDetail";
+      editDetail.Value = newDetail;
+      cmd.Parameters.Add(editDetail);
+      MySqlParameter paraId = new MySqlParameter();
+      paraId.ParameterName = "@idPara";
+      paraId.Value = this.Id;
+      cmd.Parameters.Add(paraId);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
     public List<Specialty> GetAllStylistSpecialties()
     {
       List<Specialty> allSpecialties = new List<Specialty> {};
