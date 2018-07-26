@@ -89,6 +89,7 @@ namespace HairSalon.Models
       }
       return allSpecialties;
     }
+  
     public static void DeleteAll()
     {
       MySqlConnection conn = DB.Connection();

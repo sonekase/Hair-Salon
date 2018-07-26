@@ -1,0 +1,16 @@
+@using HairSalon.Models
+
+@{
+  Layout = "_Layout";
+}
+
+<h3>Stylist Who Specializes:
+  @Model.GetName()</h3>
+  <ul>
+    @foreach (var stylist in Model.ReturnStylist())
+    {
+      <li>@stylist.GetName()</li>
+    }
+  </ul>
+    
+<h3><a href="/">Home</a></h3>html
